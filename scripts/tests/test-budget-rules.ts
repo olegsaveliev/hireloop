@@ -40,9 +40,9 @@ async function main() {
     const rows = await db.agentRun.findMany({ where: { id: { in: [a.runId, b.runId] } } });
     check("both runs logged in agent_runs with over-budget flag", rows.length === 2 && rows.every((r) => r.overBudget), `${rows.length} rows`);
     // Langfuse: the over-budget tag must be on the run's own trace (not a separate one).
-    await new Promise((r) => setTimeout(r, 8000)); // give Langfuse a few seconds to ingest
+    // Langfuse ingests in the background (often over 8 seconds), so ask again until the tag shows, up to a minute.
     for (const [label, run] of [["1x-3x", a], ["above 3x", b]] as const) {
-      const tags = await traceTags(run.traceId);
+      const tags = await traceTagsWhenIngested(run.traceId, "over-budget");
       check(`${label}: Langfuse trace tagged over-budget`, tags.includes("over-budget"), `tags=${tags.join(",")}`);
     }
     console.log(`Traces: ${a.traceUrl}\n        ${b.traceUrl}`);
@@ -50,6 +50,16 @@ async function main() {
     budget.budgetUsd = original;
   }
   process.exit(failures ? 1 : 0);
+}
+
+// Polls until the trace carries `tag` or a minute has passed, then returns its tags.
+async function traceTagsWhenIngested(traceId: string, tag: string): Promise<string[]> {
+  let tags: string[] = [];
+  for (let i = 0; i < 20 && !tags.includes(tag); i++) {
+    await new Promise((r) => setTimeout(r, 3000));
+    tags = await traceTags(traceId);
+  }
+  return tags;
 }
 
 // Reads trace tags via Langfuse's v2 observations API (the legacy traces API is unavailable to our org).
