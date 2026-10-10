@@ -1,0 +1,445 @@
+{
+  "cand-001": {
+    "candidate_id": "cand-001",
+    "current_title": "Senior Python Engineer",
+    "years_experience": 10.2,
+    "skills": [
+      "Python",
+      "FastAPI",
+      "Django",
+      "PostgreSQL",
+      "AWS",
+      "Lambda",
+      "SQS",
+      "RDS",
+      "ECS",
+      "Step Functions",
+      "Terraform",
+      "Kafka",
+      "Docker",
+      "pytest",
+      "Redis",
+      "Celery"
+    ],
+    "recent_stack": [
+      "Python",
+      "FastAPI",
+      "AWS",
+      "Lambda",
+      "SQS",
+      "RDS",
+      "PostgreSQL",
+      "Step Functions",
+      "Terraform",
+      "Kafka",
+      "Docker",
+      "pytest"
+    ],
+    "location": "Kraków, Poland",
+    "english_level": "C1",
+    "contacts": {
+      "email": "andriy.kovalchuk@mail.example",
+      "linkedin": "linkedin.example.com/in/andriy-kovalchuk"
+    },
+    "job_history": [
+      {
+        "title": "Senior Python Engineer",
+        "company": "Amber Ledger",
+        "start": "2021-03",
+        "end": "present",
+        "part_time": false
+      },
+      {
+        "title": "Python Developer",
+        "company": "Orbita Outsourcing",
+        "start": "2018-06",
+        "end": "2021-02",
+        "part_time": false
+      },
+      {
+        "title": "Junior Python Developer",
+        "company": "Nebo Software",
+        "start": "2016-09",
+        "end": "2018-05",
+        "part_time": false
+      }
+    ],
+    "key_facts": [
+      "8+ years backend engineering in Python, last 5 in fintech payments",
+      "Owns services end-to-end including on-call rotation (PagerDuty) for 3 years",
+      "Led 2 incident postmortems",
+      "PCI DSS compliance experience",
+      "Infrastructure-as-code migration: moved 14 services from EC2 to managed AWS (Lambda, ECS)",
+      "Flexible working hours, regularly overlaps with US East Coast (until 19:00 CET)"
+    ],
+    "missing_fields": []
+  },
+  "cand-002": {
+    "candidate_id": "cand-002",
+    "current_title": "Senior Backend Engineer",
+    "years_experience": 7.8,
+    "skills": [
+      "Python",
+      "FastAPI",
+      "Django",
+      "AWS",
+      "PostgreSQL",
+      "SQS",
+      "SNS",
+      "DynamoDB",
+      "Celery",
+      "Docker",
+      "GitHub Actions"
+    ],
+    "recent_stack": [
+      "Python",
+      "FastAPI",
+      "AWS Lambda",
+      "SQS",
+      "SNS",
+      "DynamoDB",
+      "PostgreSQL"
+    ],
+    "location": "Lviv, Ukraine",
+    "english_level": "B2",
+    "contacts": {
+      "email": "kateryna.bondar@mail.example",
+      "linkedin": null
+    },
+    "job_history": [
+      {
+        "title": "Senior Backend Engineer",
+        "company": "Sokil Logistics",
+        "start": "2022-04",
+        "end": "present",
+        "part_time": false
+      },
+      {
+        "title": "Backend Developer",
+        "company": "Hoverla Tech",
+        "start": "2019-01",
+        "end": "2022-03",
+        "part_time": false
+      }
+    ],
+    "key_facts": [
+      "Event-driven systems specialist on AWS",
+      "Part of on-call rotation at current role",
+      "Python backend developer with focus on reliable infrastructure",
+      "AWS Lambda, SQS, SNS, DynamoDB experience",
+      "Django REST Framework and FastAPI expertise"
+    ],
+    "missing_fields": [
+      "contacts.linkedin"
+    ]
+  },
+  "cand-003": {
+    "candidate_id": "cand-003",
+    "current_title": "Senior Python Developer",
+    "years_experience": 9.8,
+    "skills": [
+      "Python",
+      "FastAPI",
+      "Flask",
+      "PostgreSQL",
+      "Google Cloud Platform",
+      "Pub/Sub",
+      "BigQuery",
+      "Kubernetes",
+      "Kafka"
+    ],
+    "recent_stack": [
+      "Python",
+      "FastAPI",
+      "Pub/Sub",
+      "PostgreSQL",
+      "Google Cloud Platform"
+    ],
+    "location": "Wrocław, Poland",
+    "english_level": "C1",
+    "contacts": {
+      "email": "piotr.zielinski@mail.example",
+      "linkedin": null
+    },
+    "job_history": [
+      {
+        "title": "Senior Python Developer",
+        "company": "Wawel Soft",
+        "start": "2020-01",
+        "end": "present",
+        "part_time": false
+      },
+      {
+        "title": "Python Developer",
+        "company": "Kraków Analytics Hub",
+        "start": "2017-01",
+        "end": "2020-12",
+        "part_time": false
+      }
+    ],
+    "key_facts": [
+      "9 years of commercial Python experience",
+      "All cloud work on Google Cloud Platform (Cloud Run, Pub/Sub, BigQuery, Cloud SQL)",
+      "Never used AWS commercially, only personal hobby account",
+      "On-call 1 week per month in current role",
+      "Experience with microservices architecture and data pipelines",
+      "Senior-level expertise in FastAPI and Flask"
+    ],
+    "missing_fields": [
+      "contacts.linkedin"
+    ]
+  },
+  "cand-004": {
+    "candidate_id": "cand-004",
+    "current_title": "Middle Python Developer",
+    "years_experience": 5.2,
+    "skills": [
+      "Python",
+      "FastAPI",
+      "Django",
+      "PostgreSQL",
+      "Redis",
+      "AWS",
+      "Docker",
+      "Celery",
+      "MySQL"
+    ],
+    "recent_stack": [
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "Redis",
+      "AWS",
+      "Docker"
+    ],
+    "location": "Kharkiv, Ukraine",
+    "english_level": "B1",
+    "contacts": {
+      "email": "oleksandr.shevchuk@mail.example",
+      "linkedin": null
+    },
+    "job_history": [
+      {
+        "title": "Middle Python Developer",
+        "company": "Stepova AI",
+        "start": "2023-02",
+        "end": "present",
+        "part_time": false
+      },
+      {
+        "title": "Junior Python Developer",
+        "company": "Kashtan Media",
+        "start": "2021-09",
+        "end": "2023-01",
+        "part_time": false
+      }
+    ],
+    "key_facts": [
+      "Currently at Stepova AI working on FastAPI applications with AWS integrations",
+      "Experience with payment system integrations",
+      "Works remotely from Kharkiv",
+      "Background in both REST API development (FastAPI) and web frameworks (Django)",
+      "Experience with distributed task queues (Celery) and caching (Redis)",
+      "English B1, actively learning"
+    ],
+    "missing_fields": [
+      "contacts.linkedin"
+    ]
+  },
+  "cand-008": {
+    "candidate_id": "cand-008",
+    "current_title": "Python Developer",
+    "years_experience": null,
+    "skills": [
+      "Python",
+      "AWS"
+    ],
+    "recent_stack": [],
+    "location": "Kyiv, Ukraine",
+    "english_level": null,
+    "contacts": {
+      "email": null,
+      "linkedin": null
+    },
+    "job_history": [],
+    "key_facts": [
+      "Claims senior-level experience (unverified)",
+      "Some AWS experience"
+    ],
+    "missing_fields": [
+      "years_experience",
+      "recent_stack",
+      "english_level",
+      "contacts.email",
+      "contacts.linkedin",
+      "job_history",
+      "contacts"
+    ]
+  },
+  "cand-011": {
+    "candidate_id": "cand-011",
+    "current_title": "Embedded Software Engineer",
+    "years_experience": 8.3,
+    "skills": [
+      "Rust",
+      "C",
+      "C++",
+      "STM32",
+      "CAN",
+      "FreeRTOS",
+      "Yocto",
+      "Embassy",
+      "RTIC",
+      "defmt",
+      "probe-rs"
+    ],
+    "recent_stack": [
+      "Rust",
+      "STM32",
+      "CAN",
+      "Embassy",
+      "defmt",
+      "probe-rs",
+      "Yocto"
+    ],
+    "location": "Gdańsk, Poland",
+    "english_level": "C1",
+    "contacts": {
+      "email": "oksana.hrytsenko@mail.example",
+      "linkedin": "linkedin.example.com/in/ohrytsenko"
+    },
+    "job_history": [
+      {
+        "title": "Embedded Software Engineer",
+        "company": "Tatra IoT",
+        "start": "2022-02",
+        "end": "present",
+        "part_time": false
+      },
+      {
+        "title": "Firmware Developer",
+        "company": "Desna Robotics",
+        "start": "2018-08",
+        "end": "2022-01",
+        "part_time": false
+      }
+    ],
+    "key_facts": [
+      "Specializes in embedded Rust (no_std, Embassy framework)",
+      "STM32 microcontroller expertise (F4, H7 series)",
+      "CAN bus protocol and motor control experience",
+      "Firmware rewrite from C to Rust at current role",
+      "FreeRTOS RTOS background",
+      "Linux gateway integration with Yocto"
+    ],
+    "missing_fields": []
+  },
+  "cand-021": {
+    "candidate_id": "cand-021",
+    "current_title": "Middle Python Developer",
+    "years_experience": 5.3,
+    "skills": [
+      "Python",
+      "FastAPI",
+      "Redis",
+      "Docker",
+      "AWS",
+      "Celery",
+      "pytest"
+    ],
+    "recent_stack": [
+      "Python",
+      "FastAPI",
+      "Redis",
+      "Docker",
+      "AWS"
+    ],
+    "location": "Gdańsk, Poland",
+    "english_level": "A2",
+    "contacts": {
+      "email": "karolina.mazur@mail.example",
+      "linkedin": null
+    },
+    "job_history": [
+      {
+        "title": "Middle Python Developer",
+        "company": "Orbita Outsourcing",
+        "start": "2025-03",
+        "end": "present",
+        "part_time": false
+      },
+      {
+        "title": "Python Developer",
+        "company": "Nebo Software",
+        "start": "2023-03",
+        "end": "2025-02",
+        "part_time": false
+      },
+      {
+        "title": "Junior Python Developer",
+        "company": "Odra Mobility",
+        "start": "2021-07",
+        "end": "2023-02",
+        "part_time": false
+      }
+    ],
+    "key_facts": [
+      "Integrated third-party payment and KYC providers",
+      "Deployed services on AWS with Docker",
+      "Moved background jobs to Celery and Redis",
+      "Wrote integration tests with pytest",
+      "Career progression: Junior → Developer → Middle Python Developer"
+    ],
+    "missing_fields": [
+      "contacts.linkedin"
+    ]
+  },
+  "cand-040": {
+    "candidate_id": "cand-040",
+    "current_title": "Middle Frontend Developer",
+    "years_experience": 5.3,
+    "skills": [
+      "React",
+      "Jest",
+      "CSS",
+      "Next.js",
+      "Redux",
+      "React Query",
+      "TypeScript"
+    ],
+    "recent_stack": [
+      "Next.js",
+      "React",
+      "Storybook"
+    ],
+    "location": "Kyiv, Ukraine",
+    "english_level": "Intermediate",
+    "contacts": {
+      "email": "yurii.holub@mail.example",
+      "linkedin": "linkedin.example.com/in/yurii-holub"
+    },
+    "job_history": [
+      {
+        "title": "Middle Frontend Developer",
+        "company": "Kraków Analytics Hub",
+        "start": "2024-04",
+        "end": "present",
+        "part_time": false
+      },
+      {
+        "title": "Frontend Developer",
+        "company": "Bursztyn Commerce",
+        "start": "2021-08",
+        "end": "2024-03",
+        "part_time": false
+      }
+    ],
+    "key_facts": [
+      "Built dashboards with React and TypeScript",
+      "Created shared component libraries using Storybook in multiple roles",
+      "Migrated pages to Next.js in current role",
+      "Frontend-focused: React, Next.js, component libraries"
+    ],
+    "missing_fields": []
+  }
+}

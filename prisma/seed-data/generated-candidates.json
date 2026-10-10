@@ -1,0 +1,317 @@
+[
+  {
+    "id": "cand-016",
+    "fullName": "Michał Wiśniewski",
+    "source": "referral_note",
+    "language": "en",
+    "rawProfile": "Referral note: Michał Wiśniewski — python developer based in Poznań. Currently Junior Python Developer at Saga Outsourcing Group since Sep 2024 (built REST APIs in FastAPI with PostgreSQL). Main stack: Django, Celery, PostgreSQL, Python, FastAPI, Docker, Azure. English around Upper-Intermediate. Email: test.inbox+16@example.com."
+  },
+  {
+    "id": "cand-017",
+    "fullName": "Anton Babenko",
+    "source": "cv_upload",
+    "language": "en",
+    "rawProfile": "ANTON BABENKO\nLead Python Developer | Chernivtsi, Ukraine\ntest.inbox+17@example.com | linkedin.example.com/in/anton-babenko\n\nEXPERIENCE\nPolonia Telecom — Lead Python Developer, Dec 2022 – Present\n- Moved background jobs to Celery and Redis\n- Built REST APIs in Django with PostgreSQL\n\nKraków Analytics Hub — Python Developer, Aug 2021 – Nov 2022\n- Moved background jobs to Celery and Redis\n- Deployed services on GCP with Docker\n\nGdańsk Shipping Digital — Junior Python Developer, Jun 2019 – Jul 2021\n- Integrated third-party payment and KYC providers\n- Built REST APIs in Django with PostgreSQL\n\nAmber Ledger — Junior Python Developer, Jun 2014 – May 2019\n- Deployed services on GCP with Docker\n- Integrated third-party payment and KYC providers\n\nSKILLS\nFastAPI, Python, PostgreSQL, Django, Redis, GCP"
+  },
+  {
+    "id": "cand-018",
+    "fullName": "Krzysztof Szymański",
+    "source": "cv_upload",
+    "language": "en",
+    "rawProfile": "KRZYSZTOF SZYMAŃSKI\nMiddle Python Developer | Gdańsk, Poland\ntest.inbox+18@example.com | linkedin.example.com/in/krzysztof-szymanski\n\nEXPERIENCE\nLvivska Cloud — Middle Python Developer, Nov 2024 – Present\n- Deployed services on GCP with Docker\n- Built REST APIs in Django with PostgreSQL\n\nAmber Ledger — Python Developer, Feb 2022 – Oct 2024\n- Deployed services on GCP with Docker\n- Built REST APIs in FastAPI with PostgreSQL\n\nStepova AI — Junior Python Developer, Jul 2021 – Jan 2022\n- Wrote integration tests with pytest\n- Deployed services on GCP with Docker\n\nSKILLS\nCelery, Django, Docker, Redis, FastAPI, GCP\n\nLANGUAGES\nEnglish — Upper-Intermediate"
+  },
+  {
+    "id": "cand-019",
+    "fullName": "Svitlana Kuzmenko",
+    "source": "cv_upload",
+    "language": "en",
+    "rawProfile": "SVITLANA KUZMENKO\nSenior Python Developer | Gdańsk, Poland\ntest.inbox+19@example.com\n\nEXPERIENCE\nPayNest — Senior Python Developer, Jan 2024 – Present\n- Deployed services on GCP with Docker\n- Built REST APIs in Django with PostgreSQL\n\nPrut Energy — Python Developer, Oct 2020 – Dec 2023\n- Built REST APIs in FastAPI with PostgreSQL\n- Deployed services on GCP with Docker\n\nAmber Ledger — Junior Python Developer, Jul 2019 – Sep 2020\n- Wrote integration tests with pytest\n- Moved background jobs to Celery and Redis\n\nSKILLS\nRedis, Django, FastAPI, PostgreSQL, Python, GCP\n\nLANGUAGES\nEnglish — Intermediate"
+  },
+  {
+    "id": "cand-020",
+    "fullName": "Zlata Herasymenko",
+    "source": "linkedin_export",
+    "language": "en",
+    "rawProfile": "Zlata Herasymenko\nHeadline: Junior Python Developer · Django · Redis · PostgreSQL\nLocation: Lisbon, Portugal\nContact: test.inbox+20@example.com · linkedin.example.com/in/zlata-herasymenko\n\nExperience:\nJunior Python Developer — Lvivska Cloud · Full-time\nSep 2025 - Present\nDeployed services on Azure with Docker. Built REST APIs in Django with PostgreSQL.\n\nSkills: Django, Redis, PostgreSQL, Celery, Python, Docker, Azure\nLanguages: English (A2)"
+  },
+  {
+    "id": "cand-021",
+    "fullName": "Karolina Mazur",
+    "source": "linkedin_export",
+    "language": "en",
+    "rawProfile": "Karolina Mazur\nHeadline: Middle Python Developer · FastAPI · Python · Redis\nLocation: Gdańsk, Poland\nContact: test.inbox+21@example.com\n\nExperience:\nMiddle Python Developer — Orbita Outsourcing · Full-time\nMar 2025 - Present\nIntegrated third-party payment and KYC providers. Deployed services on AWS with Docker.\n\nPython Developer — Nebo Software · Full-time\nMar 2023 - Feb 2025\nDeployed services on AWS with Docker. Integrated third-party payment and KYC providers.\n\nJunior Python Developer — Odra Mobility · Full-time\nJul 2021 - Feb 2023\nMoved background jobs to Celery and Redis. Wrote integration tests with pytest.\n\nSkills: FastAPI, Python, Redis, Docker, AWS\nLanguages: English (A2)"
+  },
+  {
+    "id": "cand-022",
+    "fullName": "Joanna Grabowska",
+    "source": "referral_note",
+    "language": "en",
+    "rawProfile": "Referral note: Joanna Grabowska — python developer based in Poznań. Currently Lead Python Developer at Mazury Games since Sep 2025 (built REST APIs in FastAPI with PostgreSQL). Before that: Zorya Fintech (2022–2025), Carpathia Labs (2019–2022), Bursztyn Commerce (2015–2019). Main stack: Python, Redis, PostgreSQL, Docker, FastAPI, AWS. English around Upper-Intermediate. Email test.inbox+22@example.com."
+  },
+  {
+    "id": "cand-023",
+    "fullName": "Daryna Semenko",
+    "source": "cv_upload",
+    "language": "en",
+    "rawProfile": "DARYNA SEMENKO\nLead Data Engineer | Łódź, Poland\ntest.inbox+23@example.com | linkedin.example.com/in/daryna-semenko\n\nEXPERIENCE\nHoverla Tech — Lead Data Engineer, Apr 2024 – Present\n- Optimized Spark jobs, cutting runtime by half\n- Built Airflow pipelines loading data into BigQuery\n\nNebo Software — Data Engineer, Mar 2023 – Mar 2024\n- Optimized Spark jobs, cutting runtime by half\n- Set up data quality checks\n\nBursztyn Commerce — Junior Data Engineer, Jan 2022 – Feb 2023\n- Set up data quality checks\n- Modelled warehouse tables with dbt\n\nPayNest — Junior Data Engineer, Jun 2014 – Dec 2021\n- Optimized Spark jobs, cutting runtime by half\n- Set up data quality checks\n\nSKILLS\nPandas, SQL, Airflow, Python, Azure\n\nLANGUAGES\nEnglish — B2+"
+  },
+  {
+    "id": "cand-024",
+    "fullName": "Oksana Lytvyn",
+    "source": "cv_upload",
+    "language": "en",
+    "rawProfile": "OKSANA LYTVYN\nMiddle Data Engineer | Kraków, Poland\ntest.inbox+24@example.com | linkedin.example.com/in/oksana-lytvyn\n\nEXPERIENCE\nDnipro Data Works — Middle Data Engineer, Feb 2024 – Present\n- Modelled warehouse tables with dbt\n- Built Airflow pipelines loading data into Snowflake\n\nZorya Fintech — Junior Data Engineer, Aug 2022 – Jan 2024\n- Built Airflow pipelines loading data into Redshift\n- Modelled warehouse tables with dbt\n\nSKILLS\nPandas, Airflow, Python, dbt, Spark, SQL, GCP\n\nLANGUAGES\nEnglish — C1"
+  },
+  {
+    "id": "cand-025",
+    "fullName": "Inna Bilous",
+    "source": "cv_upload",
+    "language": "en",
+    "rawProfile": "INNA BILOUS\nMiddle Data Engineer | Vinnytsia, Ukraine\ntest.inbox+25@example.com | linkedin.example.com/in/inna-bilous\n\nEXPERIENCE\nDesna Robotics — Middle Data Engineer, Nov 2023 – Present\n- Set up data quality checks\n- Built Airflow pipelines loading data into BigQuery\n\nMazury Games — Junior Data Engineer, Aug 2022 – Oct 2023\n- Modelled warehouse tables with dbt\n- Optimized Spark jobs, cutting runtime by half\n\nSKILLS\nSpark, SQL, Airflow, Python, AWS"
+  },
+  {
+    "id": "cand-026",
+    "fullName": "Natalia Wróbel",
+    "source": "referral_note",
+    "language": "en",
+    "rawProfile": "Referral note: Natalia Wróbel — java developer based in Lublin. Currently Junior Java Developer at Hoverla Tech since Sep 2024 (developed Spring Boot microservices). Main stack: Spring Boot, PostgreSQL, Hibernate, Java, Kubernetes, AWS. English around A2. Email: test.inbox+26@example.com."
+  },
+  {
+    "id": "cand-027",
+    "fullName": "Monika Michalska",
+    "source": "cv_upload",
+    "language": "en",
+    "rawProfile": "MONIKA MICHALSKA\nMiddle Java Developer | Wrocław, Poland\ntest.inbox+27@example.com\n\nEXPERIENCE\nKashtan Media — Middle Java Developer, Jan 2025 – Present\n- Migrated monolith modules to services on Kubernetes (Azure)\n- Maintained Oracle and PostgreSQL schemas\n\nLvivska Cloud — Java Developer, Nov 2023 – Dec 2024\n- Introduced Kafka for event streaming\n- Migrated monolith modules to services on Kubernetes (Azure)\n\nKraków Analytics Hub — Junior Java Developer, Jul 2021 – Oct 2023\n- Maintained Oracle and PostgreSQL schemas\n- Introduced Kafka for event streaming\n\nSKILLS\nKubernetes, Spring Boot, PostgreSQL, Hibernate, Java, Azure\n\nLANGUAGES\nEnglish — C1"
+  },
+  {
+    "id": "cand-028",
+    "fullName": "Kyrylo Andriienko",
+    "source": "referral_note",
+    "language": "en",
+    "rawProfile": "Referral note: Kyrylo Andriienko — java developer based in Łódź. Currently Middle Java Developer at Carpathia Labs since May 2023 (developed Spring Boot microservices). Before that: Amber Ledger (2021–2023). Main stack: Java, Kafka, Kubernetes, Hibernate, GCP. English around B1. Email test.inbox+28@example.com."
+  },
+  {
+    "id": "cand-029",
+    "fullName": "Bartosz Pawlak",
+    "source": "cv_upload",
+    "language": "en",
+    "rawProfile": "BARTOSZ PAWLAK\nJunior Java Developer | Wrocław, Poland\ntest.inbox+29@example.com | linkedin.example.com/in/bartosz-pawlak\n\nEXPERIENCE\nPrut Energy — Junior Java Developer, Sep 2024 – Present\n- Introduced Kafka for event streaming\n- Developed Spring Boot microservices\n\nSKILLS\nPostgreSQL, Spring Boot, Java, Kubernetes, Kafka, Hibernate, AWS\n\nLANGUAGES\nEnglish — C1"
+  },
+  {
+    "id": "cand-030",
+    "fullName": "Olena Kravets",
+    "source": "referral_note",
+    "language": "en",
+    "rawProfile": "Referral note: Olena Kravets — kotlin backend developer based in Poznań. Currently Senior Kotlin Backend Developer at Nebo Software since Oct 2024 (rewrote Java services in Kotlin with coroutines). Before that: Polonia Telecom (2022–2024), PayNest (2021–2022). Main stack: Spring Boot, Docker, PostgreSQL, Kafka, GCP. English around C1. Email test.inbox+30@example.com."
+  },
+  {
+    "id": "cand-031",
+    "fullName": "Agnieszka Kowalczyk",
+    "source": "cv_upload",
+    "language": "en",
+    "rawProfile": "AGNIESZKA KOWALCZYK\nSenior Kotlin Backend Developer | Poznań, Poland\ntest.inbox+31@example.com | linkedin.example.com/in/agnieszka-kowalczyk\n\nEXPERIENCE\nOdra Mobility — Senior Kotlin Backend Developer, Jan 2024 – Present\n- Rewrote Java services in Kotlin with coroutines\n- Ran services on GCP\n\nMazury Games — Kotlin Backend Developer, Aug 2021 – Dec 2023\n- Built Kafka consumers for order events\n- Ran services on GCP\n\nSKILLS\nPostgreSQL, Kotlin, Kafka, Docker, GCP\n\nLANGUAGES\nEnglish — Intermediate"
+  },
+  {
+    "id": "cand-032",
+    "fullName": "Aleksandra Kozłowska",
+    "source": "cv_upload",
+    "language": "en",
+    "rawProfile": "ALEKSANDRA KOZŁOWSKA\nJunior Node.js Developer | Łódź, Poland\ntest.inbox+32@example.com\n\nEXPERIENCE\nOdra Mobility — Junior Node.js Developer, Sep 2024 – Present\n- Implemented GraphQL gateway\n- Deployed on GCP Lambda and ECS\n\nSKILLS\nExpress, Node.js, NestJS, PostgreSQL, GCP\n\nLANGUAGES\nEnglish — A2"
+  },
+  {
+    "id": "cand-033",
+    "fullName": "Volodymyr Hrynchuk",
+    "source": "referral_note",
+    "language": "en",
+    "rawProfile": "Referral note: Volodymyr Hrynchuk — node.js developer based in Dnipro. Currently Junior Node.js Developer at Vistula Systems since Sep 2025 (implemented GraphQL gateway). Main stack: TypeScript, Express, NestJS, PostgreSQL, Node.js, MongoDB, GCP. Email test.inbox+33@example.com."
+  },
+  {
+    "id": "cand-034",
+    "fullName": "Pavlo Vovk",
+    "source": "cv_upload",
+    "language": "en",
+    "rawProfile": "PAVLO VOVK\nMiddle Node.js Developer | Uzhhorod, Ukraine\ntest.inbox+34@example.com | linkedin.example.com/in/pavlo-vovk\n\nEXPERIENCE\nKraków Analytics Hub — Middle Node.js Developer, Sep 2024 – Present\n- Deployed on GCP Lambda and ECS\n- Implemented GraphQL gateway\n\nSokil Logistics — Junior Node.js Developer, Aug 2023 – Aug 2024\n- Built NestJS APIs with PostgreSQL\n- Deployed on GCP Lambda and ECS\n\nSKILLS\nPostgreSQL, Express, MongoDB, NestJS, TypeScript, GCP\n\nLANGUAGES\nEnglish — B1"
+  },
+  {
+    "id": "cand-035",
+    "fullName": "Grzegorz Wieczorek",
+    "source": "linkedin_export",
+    "language": "en",
+    "rawProfile": "Grzegorz Wieczorek\nHeadline: Senior Node.js Developer · Node.js · NestJS · Express\nLocation: Gdańsk, Poland\nContact: test.inbox+35@example.com · linkedin.example.com/in/grzegorz-wieczorek\n\nExperience:\nSenior Node.js Developer — PayNest · Full-time\nAug 2024 - Present\nBuilt NestJS APIs with PostgreSQL. Deployed on GCP Lambda and ECS.\n\nNode.js Developer — Baltic Byte · Full-time\nDec 2021 - Jul 2024\nWrote Jest test suites. Built NestJS APIs with PostgreSQL.\n\nJunior Node.js Developer — Lumen Insurance Tech · Full-time\nOct 2020 - Nov 2021\nWrote Jest test suites. Built NestJS APIs with PostgreSQL.\n\nJunior Node.js Developer — Nebo Software · Full-time\nJun 2019 - Sep 2020\nDeployed on GCP Lambda and ECS. Wrote Jest test suites.\n\nSkills: Node.js, NestJS, Express, TypeScript, MongoDB, PostgreSQL, GCP\nLanguages: English (C1)"
+  },
+  {
+    "id": "cand-036",
+    "fullName": "Mariia Tymoshchuk",
+    "source": "referral_note",
+    "language": "en",
+    "rawProfile": "Referral note: Mariia Tymoshchuk — frontend developer based in Uzhhorod. Currently Senior Frontend Developer at Nebo Software since Jan 2023 (improved Core Web Vitals). Before that: Dnipro Data Works (2019–2022), Lumen Insurance Tech (2018–2019). Main stack: Next.js, Redux, Jest, TypeScript. English around C1. Email test.inbox+36@example.com."
+  },
+  {
+    "id": "cand-037",
+    "fullName": "Paweł Jankowski",
+    "source": "linkedin_export",
+    "language": "en",
+    "rawProfile": "Paweł Jankowski\nHeadline: Junior Frontend Developer · Redux · React · TypeScript\nLocation: Gdańsk, Poland\nContact: test.inbox+37@example.com · linkedin.example.com/in/pawel-jankowski\n\nExperience:\nJunior Frontend Developer — Sokil Logistics · Full-time\nSep 2025 - Present\nCreated a shared component library in Storybook. Migrated pages to Next.js.\n\nSkills: Redux, React, TypeScript, CSS, Next.js, Jest\nLanguages: English (B2+)"
+  },
+  {
+    "id": "cand-038",
+    "fullName": "Tetiana Hordiienko",
+    "source": "linkedin_export",
+    "language": "en",
+    "rawProfile": "Tetiana Hordiienko\nHeadline: Junior Frontend Developer · TypeScript · Redux · Jest\nLocation: Kyiv, Ukraine\nContact: test.inbox+38@example.com\n\nExperience:\nJunior Frontend Developer — PayNest · Full-time\nSep 2024 - Present\nCreated a shared component library in Storybook. Built dashboards in React and TypeScript.\n\nSkills: TypeScript, Redux, Jest, Next.js, React, Leaflet"
+  },
+  {
+    "id": "cand-039",
+    "fullName": "Mykola Ostapenko",
+    "source": "linkedin_export",
+    "language": "en",
+    "rawProfile": "Mykola Ostapenko\nHeadline: Lead Frontend Developer · CSS · TypeScript · Next.js\nLocation: Zaporizhzhia, Ukraine\nContact: test.inbox+39@example.com\n\nExperience:\nLead Frontend Developer — Kashtan Media · Full-time\nFeb 2025 - Present\nMigrated pages to Next.js. Created a shared component library in Storybook.\n\nFrontend Developer — Orbita Outsourcing · Full-time\nApr 2021 - Jan 2025\nCreated a shared component library in Storybook. Built dashboards in React and TypeScript.\n\nJunior Frontend Developer — Hoverla Tech · Full-time\nNov 2017 - Mar 2021\nCreated a shared component library in Storybook. Improved Core Web Vitals.\n\nJunior Frontend Developer — Amber Ledger · Full-time\nJun 2016 - Oct 2017\nImproved Core Web Vitals. Created a shared component library in Storybook.\n\nSkills: CSS, TypeScript, Next.js, Redux, Jest, React\nLanguages: English (B2)"
+  },
+  {
+    "id": "cand-040",
+    "fullName": "Yurii Holub",
+    "source": "cv_upload",
+    "language": "en",
+    "rawProfile": "YURII HOLUB\nMiddle Frontend Developer | Kyiv, Ukraine\ntest.inbox+40@example.com | linkedin.example.com/in/yurii-holub\n\nEXPERIENCE\nKraków Analytics Hub — Middle Frontend Developer, Apr 2024 – Present\n- Migrated pages to Next.js\n- Created a shared component library in Storybook\n\nBursztyn Commerce — Frontend Developer, Aug 2021 – Mar 2024\n- Built dashboards in React and TypeScript\n- Created a shared component library in Storybook\n\nSKILLS\nReact, Jest, CSS, Next.js, Redux, React Query\n\nLANGUAGES\nEnglish — Intermediate"
+  },
+  {
+    "id": "cand-041",
+    "fullName": "Viktoriia Pavlenko",
+    "source": "cv_upload",
+    "language": "en",
+    "rawProfile": "VIKTORIIA PAVLENKO\nLead Frontend Developer | Zaporizhzhia, Ukraine\ntest.inbox+41@example.com | linkedin.example.com/in/viktoriia-pavlenko\n\nEXPERIENCE\nOrbita Outsourcing — Lead Frontend Developer, Nov 2024 – Present\n- Migrated pages to Next.js\n- Improved Core Web Vitals\n\nPayNest — Frontend Developer, Nov 2021 – Oct 2024\n- Improved Core Web Vitals\n- Created a shared component library in Storybook\n\nMazury Games — Junior Frontend Developer, Jul 2018 – Oct 2021\n- Migrated pages to Next.js\n- Improved Core Web Vitals\n\nTatra IoT — Junior Frontend Developer, Jun 2015 – Jun 2018\n- Created a shared component library in Storybook\n- Migrated pages to Next.js\n\nSKILLS\nReact, Redux, Jest, CSS, Next.js, TypeScript\n\nLANGUAGES\nEnglish — C1"
+  },
+  {
+    "id": "cand-042",
+    "fullName": "Liliia Karpenko",
+    "source": "referral_note",
+    "language": "en",
+    "rawProfile": "Referral note: Liliia Karpenko — angular developer based in Ivano-Frankivsk. Currently Middle Angular Developer at Lumen Insurance Tech since Jun 2023 (developed Angular admin panels). Before that: Kvitka Health (2022–2023). Main stack: Angular, RxJS, TypeScript, NgRx, SCSS. English around C1. Email test.inbox+42@example.com."
+  },
+  {
+    "id": "cand-043",
+    "fullName": "Taras Didenko",
+    "source": "referral_note",
+    "language": "en",
+    "rawProfile": "Referral note: Taras Didenko — angular developer based in Wrocław. Currently Lead Angular Developer at Gdańsk Shipping Digital since Sep 2024 (upgraded Angular versions across 3 apps). Before that: Polonia Telecom (2022–2024), Prut Energy (2020–2022), Desna Robotics (2016–2020). Main stack: NgRx, RxJS, SCSS, Angular, TypeScript. English around Upper-Intermediate. Email test.inbox+43@example.com."
+  },
+  {
+    "id": "cand-044",
+    "fullName": "Sofiia Marchenko",
+    "source": "referral_note",
+    "language": "en",
+    "rawProfile": "Referral note: Sofiia Marchenko — go developer based in Tbilisi. Currently Middle Go Developer at Polonia Telecom since Aug 2025 (ran services on Kubernetes in GCP). Before that: Odra Mobility (2024–2025), Nebo Software (2023–2024), Kashtan Media (2022–2023). Main stack: Redis, PostgreSQL, Go, Kubernetes, GCP. English around B1. Email test.inbox+44@example.com."
+  },
+  {
+    "id": "cand-045",
+    "fullName": "Dawid Majewski",
+    "source": "cv_upload",
+    "language": "en",
+    "rawProfile": "DAWID MAJEWSKI\nLead Go Developer | Wrocław, Poland\ntest.inbox+45@example.com | linkedin.example.com/in/dawid-majewski\n\nEXPERIENCE\nTatra IoT — Lead Go Developer, Feb 2023 – Present\n- Ran services on Kubernetes in AWS\n- Wrote gRPC services in Go\n\nHoverla Tech — Go Developer, Mar 2021 – Jan 2023\n- Ran services on Kubernetes in AWS\n- Built rate limiting with Redis\n\nPrut Energy — Junior Go Developer, Feb 2020 – Feb 2021\n- Wrote gRPC services in Go\n- Built rate limiting with Redis\n\nOdra Mobility — Junior Go Developer, Jun 2016 – Jan 2020\n- Ran services on Kubernetes in AWS\n- Built rate limiting with Redis\n\nSKILLS\nPostgreSQL, Go, Redis, Kubernetes, gRPC, AWS\n\nLANGUAGES\nEnglish — Intermediate"
+  },
+  {
+    "id": "cand-046",
+    "fullName": "Roman Savchuk",
+    "source": "referral_note",
+    "language": "en",
+    "rawProfile": "Referral note: Roman Savchuk — go developer based in Tbilisi. Currently Junior Go Developer at Lvivska Cloud since Sep 2024 (built rate limiting with Redis). Main stack: Go, Redis, Kubernetes, PostgreSQL, AWS. English around B2. Email test.inbox+46@example.com."
+  },
+  {
+    "id": "cand-047",
+    "fullName": "Artem Rudenko",
+    "source": "cv_upload",
+    "language": "en",
+    "rawProfile": "ARTEM RUDENKO\nSenior .NET Developer | Chernivtsi, Ukraine\ntest.inbox+47@example.com | linkedin.example.com/in/artem-rudenko\n\nEXPERIENCE\nKashtan Media — Senior .NET Developer, Aug 2024 – Present\n- Moved on-prem services to Azure\n- Built ASP.NET Core APIs\n\nHoverla Tech — .NET Developer, Jul 2022 – Jul 2024\n- Built ASP.NET Core APIs\n- Maintained MS SQL stored procedures\n\nDesna Robotics — Junior .NET Developer, Jun 2021 – Jun 2022\n- Moved on-prem services to Azure\n- Maintained MS SQL stored procedures\n\nOdra Mobility — Junior .NET Developer, Jun 2017 – May 2021\n- Moved on-prem services to Azure\n- Built ASP.NET Core APIs\n\nSKILLS\nC#, Entity Framework, MS SQL, .NET, ASP.NET Core, Azure\n\nLANGUAGES\nEnglish — B2"
+  },
+  {
+    "id": "cand-048",
+    "fullName": "Łukasz Woźniak",
+    "source": "referral_note",
+    "language": "en",
+    "rawProfile": "Referral note: Łukasz Woźniak — .net developer based in Łódź. Currently Lead .NET Developer at Dnipro Data Works since Apr 2024 (maintained MS SQL stored procedures). Before that: Prut Energy (2022–2024), Nebo Software (2020–2022), Mazury Games (2016–2020). Main stack: Entity Framework, MS SQL, .NET, C#, ASP.NET Core, AWS. English around C1. Email test.inbox+48@example.com."
+  },
+  {
+    "id": "cand-049",
+    "fullName": "Vasyl Moskalenko",
+    "source": "linkedin_export",
+    "language": "en",
+    "rawProfile": "Vasyl Moskalenko\nHeadline: Junior DevOps Engineer · Prometheus · Linux · Kubernetes\nLocation: Poznań, Poland\nContact: test.inbox+49@example.com\n\nExperience:\nJunior DevOps Engineer — Mazury Games · Full-time\nSep 2025 - Present\nRan Kubernetes clusters with Helm. Set up Prometheus and Grafana monitoring.\n\nSkills: Prometheus, Linux, Kubernetes, Terraform, Helm, AWS\nLanguages: English (B1)"
+  },
+  {
+    "id": "cand-050",
+    "fullName": "Adrian Górski",
+    "source": "cv_upload",
+    "language": "en",
+    "rawProfile": "ADRIAN GÓRSKI\nLead DevOps Engineer | Wrocław, Poland\ntest.inbox+50@example.com | linkedin.example.com/in/adrian-gorski\n\nEXPERIENCE\nGdańsk Shipping Digital — Lead DevOps Engineer, Sep 2023 – Present\n- Managed AWS infrastructure with Terraform\n- Set up Prometheus and Grafana monitoring\n\nDnipro Data Works — DevOps Engineer, Aug 2022 – Aug 2023\n- Set up Prometheus and Grafana monitoring\n- Managed AWS infrastructure with Terraform\n\nBaltic Byte — Junior DevOps Engineer, Jan 2019 – Jul 2022\n- Set up Prometheus and Grafana monitoring\n- Managed AWS infrastructure with Terraform\n\nLumen Insurance Tech — Junior DevOps Engineer, Jun 2016 – Dec 2018\n- Ran Kubernetes clusters with Helm\n- Managed AWS infrastructure with Terraform\n\nSKILLS\nLinux, Helm, Kubernetes, Docker, GitHub Actions, Terraform, AWS"
+  },
+  {
+    "id": "cand-051",
+    "fullName": "Anastasiia Polishchuk",
+    "source": "linkedin_export",
+    "language": "en",
+    "rawProfile": "Anastasiia Polishchuk\nHeadline: Lead DevOps Engineer · Prometheus · Linux · Terraform\nLocation: Tbilisi, Georgia\nContact: test.inbox+51@example.com · linkedin.example.com/in/anastasiia-polishchuk\n\nExperience:\nLead DevOps Engineer — Hoverla Tech · Full-time\nDec 2024 - Present\nSet up Prometheus and Grafana monitoring. Ran Kubernetes clusters with Helm.\n\nDevOps Engineer — Saga Outsourcing Group · Full-time\nMar 2023 - Nov 2024\nBuilt CI/CD in GitHub Actions. Ran Kubernetes clusters with Helm.\n\nJunior DevOps Engineer — Zorya Fintech · Full-time\nNov 2019 - Feb 2023\nSet up Prometheus and Grafana monitoring. Managed AWS infrastructure with Terraform.\n\nJunior DevOps Engineer — Lumen Insurance Tech · Full-time\nJun 2017 - Oct 2019\nBuilt CI/CD in GitHub Actions. Ran Kubernetes clusters with Helm.\n\nSkills: Prometheus, Linux, Terraform, GitHub Actions, Kubernetes, AWS\nLanguages: English (Intermediate)"
+  },
+  {
+    "id": "cand-052",
+    "fullName": "Kinga Olszewska",
+    "source": "cv_upload",
+    "language": "en",
+    "rawProfile": "KINGA OLSZEWSKA\nJunior QA Automation Engineer | Wrocław, Poland\ntest.inbox+52@example.com | linkedin.example.com/in/kinga-olszewska\n\nEXPERIENCE\nAmber Ledger — Junior QA Automation Engineer, Mar 2025 – Present\n- Wrote test plans for releases\n- Built API test suites in Postman\n\nVistula Systems — Junior QA Automation Engineer, Aug 2024 – Feb 2025\n- Wrote test plans for releases\n- Automated E2E tests with Playwright\n\nSKILLS\nPostman, Selenium, Playwright, Cypress, Java, TypeScript\n\nLANGUAGES\nEnglish — B2"
+  },
+  {
+    "id": "cand-053",
+    "fullName": "Yaroslav Kostenko",
+    "source": "cv_upload",
+    "language": "en",
+    "rawProfile": "YAROSLAV KOSTENKO\nJunior QA Automation Engineer | Lviv, Ukraine\ntest.inbox+53@example.com | linkedin.example.com/in/yaroslav-kostenko\n\nEXPERIENCE\nNorthbridge Retail — Junior QA Automation Engineer, Sep 2024 – Present\n- Wrote test plans for releases\n- Added tests to CI pipelines\n\nSKILLS\nJava, Postman, Selenium, Cypress, Playwright, TypeScript\n\nLANGUAGES\nEnglish — C1"
+  },
+  {
+    "id": "cand-054",
+    "fullName": "Mateusz Stępień",
+    "source": "referral_note",
+    "language": "en",
+    "rawProfile": "Referral note: Mateusz Stępień — qa automation engineer based in Katowice. Currently Lead QA Automation Engineer at Zorya Fintech since Jan 2025 (automated E2E tests with Playwright). Before that: Carpathia Labs (2021–2024), Wawel Soft (2018–2021), PayNest (2013–2018). Main stack: Cypress, Java, TypeScript, Postman. English around B2. Email test.inbox+54@example.com."
+  },
+  {
+    "id": "cand-055",
+    "fullName": "Wojciech Baran",
+    "source": "referral_note",
+    "language": "en",
+    "rawProfile": "Referral note: Wojciech Baran — ios developer based in Poznań. Currently Senior iOS Developer at PayNest since Jan 2025 (built iOS features in SwiftUI). Before that: Odra Mobility (2021–2024), Dnipro Data Works (2017–2021), Carpathia Labs (2017–2017). Main stack: Swift, Combine, Core Data, SwiftUI. English around C1. Email test.inbox+55@example.com."
+  },
+  {
+    "id": "cand-056",
+    "fullName": "Nazar Prokopenko",
+    "source": "linkedin_export",
+    "language": "en",
+    "rawProfile": "Nazar Prokopenko\nHeadline: Middle Android Developer · Room · Kotlin · Jetpack Compose\nLocation: Warsaw, Poland\nContact: test.inbox+56@example.com · linkedin.example.com/in/nazar-prokopenko\n\nExperience:\nMiddle Android Developer — Stepova AI · Full-time\nJun 2025 - Present\nImproved app startup time. Introduced offline mode with Room.\n\nAndroid Developer — Hoverla Tech · Full-time\nSep 2023 - May 2025\nIntroduced offline mode with Room. Built Android features with Jetpack Compose.\n\nJunior Android Developer — Northbridge Retail · Full-time\nJul 2021 - Aug 2023\nBuilt Android features with Jetpack Compose. Introduced offline mode with Room.\n\nSkills: Room, Kotlin, Jetpack Compose, Retrofit, Coroutines\nLanguages: English (B2)"
+  },
+  {
+    "id": "cand-057",
+    "fullName": "Ewa Sikora",
+    "source": "linkedin_export",
+    "language": "en",
+    "rawProfile": "Ewa Sikora\nHeadline: Junior PHP Developer · Redis · MySQL · Laravel\nLocation: Lublin, Poland\nContact: test.inbox+57@example.com · linkedin.example.com/in/ewa-sikora\n\nExperience:\nJunior PHP Developer — Lvivska Cloud · Full-time\nSep 2025 - Present\nDeveloped Laravel e-commerce backends. Built admin panels in Vue.js.\n\nSkills: Redis, MySQL, Laravel, Vue.js"
+  },
+  {
+    "id": "cand-058",
+    "fullName": "Zofia Dąbrowska",
+    "source": "cv_upload",
+    "language": "en",
+    "rawProfile": "ZOFIA DĄBROWSKA\nSenior PHP Developer | Katowice, Poland\ntest.inbox+58@example.com\n\nEXPERIENCE\nPrut Energy — Senior PHP Developer, Apr 2024 – Present\n- Developed Laravel e-commerce backends\n- Built admin panels in Vue.js\n\nDnipro Data Works — PHP Developer, Feb 2022 – Mar 2024\n- Developed Laravel e-commerce backends\n- Optimized slow MySQL queries\n\nPolonia Telecom — Junior PHP Developer, Jul 2018 – Jan 2022\n- Built admin panels in Vue.js\n- Optimized slow MySQL queries\n\nPayNest — Junior PHP Developer, Jun 2017 – Jun 2018\n- Built admin panels in Vue.js\n- Optimized slow MySQL queries\n\nSKILLS\nRedis, Vue.js, MySQL, Laravel, PHP\n\nLANGUAGES\nEnglish — B1"
+  },
+  {
+    "id": "cand-059",
+    "fullName": "Iryna Lysenko",
+    "source": "linkedin_export",
+    "language": "en",
+    "rawProfile": "Iryna Lysenko\nHeadline: Senior Embedded Software Engineer · C++ · CAN · FreeRTOS\nLocation: Dnipro, Ukraine\nContact: test.inbox+59@example.com\n\nExperience:\nSenior Embedded Software Engineer — Vistula Systems · Full-time\nNov 2022 - Present\nWrote firmware in C for STM32. Implemented CAN bus communication.\n\nEmbedded Software Engineer — Lvivska Cloud · Full-time\nNov 2020 - Oct 2022\nImplemented CAN bus communication. Wrote firmware in C for STM32.\n\nJunior Embedded Software Engineer — Dnipro Data Works · Full-time\nAug 2019 - Oct 2020\nDebugged hardware with oscilloscope and JTAG. Wrote firmware in C for STM32.\n\nJunior Embedded Software Engineer — Amber Ledger · Full-time\nJun 2018 - Jul 2019\nDebugged hardware with oscilloscope and JTAG. Wrote firmware in C for STM32.\n\nSkills: C++, CAN, FreeRTOS, UART, C, Zephyr\nLanguages: English (Upper-Intermediate)"
+  },
+  {
+    "id": "cand-060",
+    "fullName": "Maksym Hnatiuk",
+    "source": "cv_upload",
+    "language": "en",
+    "rawProfile": "MAKSYM HNATIUK\nSenior Embedded Software Engineer | Dnipro, Ukraine\nlinkedin.example.com/in/maksym-hnatiuk | test.inbox+60@example.com\n\nEXPERIENCE\nDnipro Data Works — Senior Embedded Software Engineer, Jan 2025 – Present\n- Debugged hardware with oscilloscope and JTAG\n- Wrote firmware in C for STM32\n\nDesna Robotics — Embedded Software Engineer, Jun 2022 – Dec 2024\n- Debugged hardware with oscilloscope and JTAG\n- Implemented CAN bus communication\n\nZorya Fintech — Junior Embedded Software Engineer, May 2020 – May 2022\n- Wrote firmware in C for STM32\n- Debugged hardware with oscilloscope and JTAG\n\nLumen Insurance Tech — Junior Embedded Software Engineer, Jun 2019 – Apr 2020\n- Debugged hardware with oscilloscope and JTAG\n- Implemented CAN bus communication\n\nSKILLS\nC, STM32, UART, C++, FreeRTOS, Zephyr\n\nLANGUAGES\nEnglish — B1"
+  }
+]

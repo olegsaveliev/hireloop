@@ -1,0 +1,563 @@
+// Hireloop prototype database (SQLite now, Postgres/Supabase later).
+// To switch to Postgres: change `provider` below and DATABASE_URL in .env.local.
+// Tables are added phase by phase: Phase 0 (mock data, agent_runs), Phase 1 (job specs, jobs, approvals),
+// Phase 2 (pipeline, candidate profiles, screening results), Phase 3 (messages), Phase 5 (pre-screens, submissions,
+// interviews, calendar events, outcomes, dataset corrections, weekly reports).
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// ---------- mock_ats (stands in for Ashby) ----------
+
+model Client {
+  id               String        @id // e.g. "client-brightline"
+  name             String
+  country          String
+  timezone         String // IANA name, e.g. "America/New_York"
+  submissionFormat Json? // not used since 2026-10-09: every client gets the one Hireloop format (src/config/submission.ts)
+  briefs           ClientBrief[]
+  pastJobs         PastJob[]
+  contacts         ClientContact[]
+
+  @@map("clients")
+}
+
+model ClientBrief {
+  id          String   @id // e.g. "brief-001"
+  clientId    String
+  client      Client   @relation(fields: [clientId], references: [id])
+  fromName    String
+  fromEmail   String
+  subject     String
+  body        String // raw, messy email text
+  receivedAt  DateTime
+  jobSpecs    JobSpec[]
+  // Gmail inbound (docs/specs/11-gmail-inbound.md). Client updates in the same thread are appended to `body`.
+  source          String  @default("seed") // seed | manual | gmail
+  gmailThreadId   String?
+  gmailMessageId  String?
+  attachmentNames Json? // string[]; content not read yet
+  updateCount     Int     @default(0)
+
+  @@index([gmailThreadId])
+  @@map("client_briefs")
+}
+
+// Known sender email -> client. Filled when the recruiter links a "New sender" in the approval queue.
+model ClientContact {
+  email     String   @id // lowercase
+  clientId  String
+  client    Client   @relation(fields: [clientId], references: [id])
+  name      String?
+  createdAt DateTime @default(now())
+
+  @@map("client_contacts")
+}
+
+model PastJob {
+  id         String   @id
+  clientId   String
+  client     Client   @relation(fields: [clientId], references: [id])
+  title      String
+  seniority  String
+  stack      Json // string[]
+  rateRange  String
+  outcome    String // e.g. "filled", "cancelled"
+  notes      String
+  closedAt   DateTime
+
+  @@map("past_jobs")
+}
+
+model Candidate {
+  id         String @id // e.g. "cand-001"
+  fullName   String
+  source     String // where the profile came from: "linkedin_export", "cv_upload", "referral_note"...
+  language   String // language of rawProfile: "en", "uk", "pl"
+  rawProfile String // unstructured profile text; Step 3 extracts fields from this
+
+  @@map("candidates")
+}
+
+// A CV uploaded as a PDF on the Candidates page (docs/specs/15-cv-upload.md). The CV reader turns it into a
+// `candidates` row (source "pdf_upload"); the original file is kept here, in the database, not on disk.
+// Separate table so candidate searches don't load the PDFs.
+model CvUpload {
+  candidateId String   @id
+  fileName    String
+  sizeBytes   Int
+  sha256      String   @unique // same file uploaded twice is refused
+  pdf         Bytes
+  agentRunId  String?
+  uploadedAt  DateTime @default(now())
+
+  @@map("cv_uploads")
+}
+
+// ---------- mock_inbox (stands in for Gmail) ----------
+
+// Pre-written candidate replies used to simulate inbound email in Step 5.
+model SeedReply {
+  id     String @id
+  intent String // expected classification: interested | not_interested | question | later | out_of_office
+  body   String
+
+  @@map("seed_replies")
+}
+
+// ---------- Step 1: job specs, jobs, approvals ----------
+
+// One draft or approved job spec. A brief with two roles gets two rows (same briefId, roleIndex 0 and 1).
+// On reject, the row keeps status "rejected" and a new row is created with previousSpecId pointing to it.
+model JobSpec {
+  id              String       @id @default(cuid())
+  briefId         String
+  brief           ClientBrief  @relation(fields: [briefId], references: [id])
+  clientId        String
+  roleIndex       Int          @default(0) // which role in the brief (0 for single-role briefs)
+  roleCount       Int          @default(1) // how many roles the agent found in the brief
+  status          String // awaiting_approval | approved | rejected
+  agentDraft      Json // exactly what the agent produced (never edited)
+  spec            Json // current version: the agent draft plus any recruiter edits
+  // Recruiter's notes on open questions: [{ question, answered, answer }], same order as spec.open_questions
+  answers         Json         @default("[]")
+  agentNote       String? // e.g. "This brief describes two roles, so two specs were created."
+  previousSpecId  String? // the rejected spec this one regenerates
+  rejectComment   String? // filled when status = rejected
+  fieldsEdited    Int? // filled on approve: how many of the 9 spec fields the recruiter changed
+  agentRunIds     Json // the run(s) that produced this draft (2 if a schema retry was needed)
+  traceId         String? // Langfuse trace of that run (scores go here)
+  createdAt       DateTime     @default(now())
+  decidedAt       DateTime?
+  // Step 4 reject: the recruiter edits the approved spec directly (no new version); last edit time.
+  editedAfterApprovalAt DateTime?
+  job             Job?
+
+  @@map("job_specs")
+}
+
+// An approved spec becomes a job. Steps 2-4 run on it automatically (src/agents/pipeline/workflow.ts).
+model Job {
+  id        String   @id @default(cuid())
+  jobSpecId String   @unique
+  jobSpec   JobSpec  @relation(fields: [jobSpecId], references: [id])
+  clientId  String
+  title     String
+  // ready_for_sourcing -> sourcing -> enriching -> screening -> awaiting_shortlist -> shortlisted
+  // -> drafting_outreach -> outreach (Steps 5-8: drafts, sends, replies, pre-screens, submissions, interviews). Also: paused_over_budget (job budget hit, waiting for a human), no_candidates, stopped, failed,
+  // closed (the recruiter closed the position; Reopen restores statusBeforeClose)
+  // Set at shortlist approval: share of the screening agent's top 10 the recruiter kept (Langfuse score
+  // recruiter_agreement). Shown on the Runs page quality table.
+  recruiterAgreement Float?
+  status    String
+  pipelineNote      String? // e.g. "Search broadened", "Everyone scored under 40: spec may be too strict"
+  // Last sourcing run, for the Jobs page: { highlights: [{ title, text }], queries: string[], duplicates: number }.
+  sourcingSummary   Json?
+  pipelineUpdatedAt DateTime? // last progress; a running job with an old value is probably stuck
+  // Extra budget a human approved after the job hit its cap ("Continue" in the approval queue).
+  extraBudgetUsd    Float    @default(0)
+  // "Close position" (2026-10-10): status "closed", why (src/config/feedback.ts CLOSE_REASONS), an optional note, and the
+  // status to go back to on "Reopen".
+  closedAt          DateTime?
+  closeReason       String?
+  closeNote         String?
+  statusBeforeClose String?
+  createdAt DateTime @default(now())
+  pipeline  PipelineEntry[]
+  screening ScreeningResult[]
+  messages  Message[]
+  prescreens Prescreen[]
+  submissions Submission[]
+  interviews Interview[]
+  outcomes  Outcome[]
+
+  @@map("jobs")
+}
+
+// ---------- Steps 2-4: pipeline, profiles, screening ----------
+
+// One candidate in one job's pipeline. candidateId points at candidates.id (no foreign key, so
+// re-seeding mock data never breaks app data).
+model PipelineEntry {
+  id             String   @id @default(cuid())
+  jobId          String
+  job            Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  candidateId    String
+  stage          String // sourced | shortlisted | contacted | replied | declined | prescreened | submitted | client_rejected | interview | hired | withdrew
+  matchedOn      Json // string[]: which search terms found this candidate
+  sourcingRunId  String? // agent_runs.id of the sourcing run that added it
+  // Step 5 follow-up state.
+  followUpsPausedUntil DateTime? // out-of-office reply: no follow-ups before this date
+  followUpsStopped     String? // why follow-ups stopped, e.g. "Said no or asked to stop"
+  outreachNote         String? // e.g. "No email: contact manually"
+  createdAt      DateTime @default(now())
+
+  @@unique([jobId, candidateId])
+  @@map("pipeline")
+}
+
+// Step 3 output: one structured profile per candidate (reused across jobs, raw profiles don't change).
+model CandidateProfile {
+  candidateId  String   @id
+  data         Json // the enrichment schema (src/agents/enrichment/schema.ts)
+  missingCount Int
+  agentRunId   String?
+  createdAt    DateTime @default(now())
+
+  @@map("candidate_profiles")
+}
+
+// Step 4 output: one row per candidate per screening of a job. When the spec is edited and the job is
+// re-screened, old rows get current = false (kept as history).
+model ScreeningResult {
+  id            String   @id @default(cuid())
+  jobId         String
+  job           Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  candidateId   String
+  current       Boolean  @default(true)
+  // Pre-filter (app code, no AI): no must-have found in the profile -> not sent to Opus.
+  filteredOut   Boolean  @default(false)
+  filterReason  String?
+  data          Json? // the screening schema (src/agents/screening/schema.ts); null when filtered out
+  score         Int? // agent score 0-100 (after the dealbreaker cap)
+  confidence    String? // high | medium | low
+  overrideScore Int? // recruiter's score, if overridden
+  overrideNote  String?
+  agentRunId    String?
+  traceId       String?
+  createdAt     DateTime @default(now())
+
+  @@index([jobId, current])
+  @@map("screening_results")
+}
+
+// ---------- Step 5: mock_inbox messages ----------
+
+// One email in a candidate's thread for one job: outbound drafts/sent messages and inbound replies.
+// This table is the mock inbox (later: Gmail). Only the approve action sets status "sent".
+model Message {
+  id                String    @id @default(cuid())
+  jobId             String
+  job               Job       @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  candidateId       String
+  direction         String // outbound | inbound
+  kind              String // first | follow_up | reply (our answer to them) | inbound | prescreen (Step 6 questions) | submission (Step 7, to the client)
+  // | scheduling (Step 8, to the candidate) | scheduling_client (Step 8, to the client) | client (the client's reply, inbound)
+  sequenceStep      Int? // 1 first message, 2-3 follow-ups; null for replies
+  // outbound: awaiting_approval -> sending (Gmail call in progress) -> sent | rejected (redrafted) | cancelled (made stale by a reply).
+  // send_failed: a no-click email (Steps 6, 8) Gmail refused; "Try again" in the approval queue.
+  // Step 6 questions are created as sent (no approval in the prototype; mock-inbox.sendWithoutApproval).
+  // inbound: received
+  status            String
+  toEmail           String?
+  subject           String
+  body              String // editable part (outbound) or the candidate's text (inbound)
+  footer            String? // opt-out line, added by the app to every outbound message
+  agentDraft        Json? // exactly what the agent wrote (never edited), to detect recruiter edits
+  hooks             Json      @default("[]") // personalization_hooks
+  previousMessageId String? // the rejected draft this one redrafts
+  replyToId         String? // for our replies: the inbound message they answer
+  rejectComment     String?
+  // Inbound only: classifier output (never edited), current intent (recruiter can correct it), feedback.
+  classification    Json?
+  intent            String?
+  classifierCorrect Boolean?
+  warning           String? // e.g. "Mentions an amount that is not in the spec's rate range"
+  agentRunIds       Json      @default("[]")
+  traceId           String? // Langfuse trace of the run that wrote/classified it (scores go here)
+  sentAt            DateTime? // outbound: when sent; inbound: when received
+  createdAt         DateTime  @default(now())
+  decidedAt         DateTime?
+  // Real Gmail (docs/specs/12-gmail-outreach.md). Null for mock-only messages. deliveredTo = the test address it really
+  // went to (toEmail stays the candidate's own address).
+  gmailMessageId    String?   @unique
+  gmailThreadId     String?
+  deliveredTo       String?
+  // When the recruiter clicked its Candidate / Client tab on the Job page; null = "New" tag (2026-10-10). Inbound
+  // emails and sent outbound ones (drafts don't count until they go out).
+  seenAt            DateTime?
+
+  @@index([jobId, candidateId])
+  @@index([gmailThreadId])
+  @@map("messages")
+}
+
+// ---------- Step 6: pre-screen ----------
+
+// One pre-screen per candidate per job (docs/specs/06-prescreen-agent.md). Questions go out without approval;
+// every candidate message after them is treated as answers and (re-)summarized, until Step 8 scheduling starts.
+model Prescreen {
+  id                 String    @id @default(cuid())
+  jobId              String
+  job                Job       @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  candidateId        String
+  status             String // questions_sent -> summarized
+  questions          Json // [{ question, topic, about }] (src/agents/prescreen/schema.ts)
+  questionsMessageId String?
+  questionsTraceId   String?
+  data               Json? // the summary (src/agents/prescreen/schema.ts), after the app's rate check
+  recommendation     String? // proceed | discuss | stop
+  completeness       Float? // answered questions / questions (Langfuse score answers_completeness)
+  answeredUpTo       DateTime? // sentAt of the latest candidate message included in the summary
+  traceId            String? // Langfuse trace of the latest summary run (scores go here)
+  agentRunIds        Json      @default("[]")
+  // Recruiter's call after reading the summary: submit | dont_submit (Langfuse recruiter_agreed_with_recommendation).
+  decision           String?
+  decidedAt          DateTime?
+  // Step 7: rate typed by the recruiter when the pre-screen found none (or not in the client's currency/period).
+  confirmedRate      String?
+  // Step 7: set while a submission is being drafted, so two runs never draft the same candidate twice.
+  submissionStartedAt DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  @@unique([jobId, candidateId])
+  @@map("prescreens")
+}
+
+// ---------- Step 7: submissions ----------
+
+// One candidate profile in the client's format (docs/specs/07-submission-agent.md). Like messages, every draft is a row:
+// awaiting_approval -> sent (account manager approved) | rejected (redrafted, see previousSubmissionId) | withdrawn.
+model Submission {
+  id                   String    @id @default(cuid())
+  jobId                String
+  job                  Job       @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  candidateId          String
+  clientId             String
+  status               String
+  anonymized           Boolean
+  format               Json // the client template used (or the default Hireloop format)
+  data                 Json // current version: the agent draft plus any account manager edits
+  agentDraft           Json // exactly what the agent produced (never edited)
+  previousSubmissionId String?
+  rejectComment        String?
+  messageId            String? // the mock_inbox message to the client, once sent
+  agentRunIds          Json      @default("[]")
+  traceId              String? // Langfuse trace of the run that wrote it (scores go here)
+  createdAt            DateTime  @default(now())
+  decidedAt            DateTime?
+
+  @@index([jobId, candidateId])
+  @@map("submissions")
+}
+
+// ---------- Step 8: interviews + mock_calendar ----------
+
+// One client interview per candidate per job (docs/specs/08-scheduling-agent.md). Times are found by code
+// (src/agents/scheduling/slots.ts); the agent writes the options email and reads the candidate's replies.
+// finding -> proposed (options sent to the candidate) -> awaiting_client (candidate picked one) -> confirmed (booked)
+// A reschedule request sends new options (status rescheduled); anything unclear -> escalated (approval queue).
+model Interview {
+  id               String    @id @default(cuid())
+  jobId            String
+  job              Job       @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  candidateId      String
+  clientId         String
+  submissionId     String
+  status           String // finding | proposed | rescheduled | awaiting_client | confirmed | escalated | no_show | cancelled (Step 9 outcome)
+  candidateTz      String? // IANA time zone, from the candidate's location (null = unknown -> escalated)
+  clientTz         String
+  clientEmail      String // the client contact (brief sender); also their calendar in mock_calendar
+  proposedSlots    Json      @default("[]") // ISO datetimes (start; each interview lasts INTERVIEW_MINUTES)
+  pastSlots        Json      @default("[]") // slots proposed before a reschedule (never proposed again)
+  chosenSlot       DateTime? // the candidate's pick, waiting for the client
+  confirmedSlot    DateTime?
+  calendarEventIds Json      @default("[]")
+  rescheduleCount  Int       @default(0)
+  messagesToConfirm Int      @default(0) // scheduling messages we sent before the booking (Langfuse messages_to_confirm)
+  escalationReason String?
+  lastSentAt       DateTime? // our latest scheduling message (nudge after NUDGE_AFTER_HOURS without an answer)
+  nudgedAt         DateTime?
+  reminderSentAt   DateTime?
+  traceId          String? // the interview's main Langfuse trace (scores messages_to_confirm, escalated go here)
+  agentRunIds      Json      @default("[]")
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  // Google Calendar (docs/specs/14-google-calendar.md): the real event in the recruiter's calendar, once confirmed.
+  googleEventId    String?
+  googleEventLink  String?
+  meetLink         String?
+  @@unique([jobId, candidateId])
+  @@map("interviews")
+}
+
+// mock_calendar (stands in for Google Calendar): events that make a person busy. Everyone also has generated
+// busy hours (src/agents/tools/mock-calendar.ts), so no seed data is needed. `person` = candidate id or client email.
+model CalendarEvent {
+  id          String   @id @default(cuid())
+  person      String
+  startsAt    DateTime
+  endsAt      DateTime
+  title       String
+  interviewId String?
+  createdAt   DateTime @default(now())
+
+  @@index([person])
+  @@map("calendar_events")
+}
+
+// ---------- Step 9: feedback loop ----------
+
+// The final outcome for one candidate in one job (docs/specs/09-feedback-loop.md), entered by the recruiter or AM.
+// Recording it again replaces it (and its Langfuse scores, which have fixed ids).
+model Outcome {
+  id          String   @id @default(cuid())
+  jobId       String
+  job         Job      @relation(fields: [jobId], references: [id], onDelete: Cascade)
+  candidateId String
+  outcome     String // hired | rejected_by_client | withdrew
+  reason      String // checked for protected attributes (src/config/feedback.ts)
+  stageBefore String // pipeline stage when the outcome was recorded (the stage then becomes hired | client_rejected | withdrew)
+  scoredTraces Json   @default("[]") // [{ agent, traceId }]: traces that got the final_outcome score
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([jobId, candidateId])
+  @@map("outcomes")
+}
+
+// A human correction from an earlier step, turned into an eval item for that agent's Langfuse dataset.
+// Collected from the database by src/agents/feedback/corrections.ts (one row per corrected thing, never twice).
+model DatasetCorrection {
+  id             String    @id @default(cuid())
+  agent          String // the agent's dataset, e.g. "screening-agent"
+  source         String // job_spec_edited | job_spec_rejected | screening_override | outreach_edited | outreach_rejected | classifier_corrected | prescreen_disagreed | submission_edited | submission_rejected
+  sourceId       String // the corrected row (job_specs / screening_results / messages / prescreens / submissions id)
+  jobId          String?
+  candidateId    String?
+  input          Json // what the agent got (same shape as that agent's items in src/evals/datasets.ts when checkable)
+  agentOutput    Json // what the agent produced
+  correctedOutput Json // what the human changed it to (or their comment)
+  expected       String // in plain words
+  // Automatic pass/fail check for `npm run eval`: score_within (screening, +/- 10) | intent_is (classifier).
+  // null = reference example only (edited drafts, comments): in the dataset, not run by the eval.
+  checkKind      String?
+  checkValue     Json?
+  langfuseItemId String // dataset item id in Langfuse
+  syncedAt       DateTime? // pushed to Langfuse
+  createdAt      DateTime  @default(now())
+
+  @@unique([source, sourceId])
+  @@map("dataset_corrections")
+}
+
+// One run of the weekly job ("Run now" on the Feedback page; hosted version: a Trigger.dev schedule).
+model WeeklyReport {
+  id                String    @id @default(cuid())
+  status            String // running | done | failed
+  periodStart       DateTime
+  periodEnd         DateTime
+  correctionsAdded  Int       @default(0)
+  correctionsSynced Int       @default(0)
+  evalResults       Json? // [{ agent, passed, total, costUsd, runName }] when the datasets were run
+  facts             Json? // what the summary agent was given: [{ id, kind, agent, text }]
+  summary           Json? // the weekly summary (src/agents/feedback/schema.ts)
+  agentRunIds       Json      @default("[]")
+  traceId           String?
+  costUsd           Float     @default(0)
+  error             String?
+  createdAt         DateTime  @default(now())
+  finishedAt        DateTime?
+
+  @@map("weekly_reports")
+}
+
+// Everything waiting for a human, across all steps. Pipelines pause until status leaves awaiting_approval.
+model ApprovalItem {
+  id         String    @id @default(cuid())
+  kind       String // job_spec | stopped_run | failed_run | shortlist | no_candidates | job_budget | outreach | prescreen_review | submission | submission_rate | scheduling
+  step       Int // workflow step number (1-9)
+  status     String // awaiting_approval | approved | rejected | dismissed
+  title      String
+  detail     String?
+  clientId   String?
+  briefId    String?
+  jobSpecId  String?
+  jobId      String?
+  candidateId String? // for items about one candidate (Step 6+)
+  agentRunId String?
+  inboundEmailId String? // Gmail inbound items: new_sender, client_update, stopped/failed classifier runs
+  createdAt  DateTime  @default(now())
+  decidedAt  DateTime?
+
+  @@index([status])
+  @@map("approval_items")
+}
+
+// ---------- Gmail inbound (docs/specs/11-gmail-inbound.md) ----------
+
+// The recruiter's Google login (one account in the prototype). Kept in the database, never on disk.
+model GoogleAccount {
+  id           String    @id @default("default")
+  email        String
+  refreshToken String
+  scopes       String
+  connectedAt  DateTime  @default(now())
+  lastError    String? // e.g. "login expired" (Google ends testing-mode logins after 7 days)
+
+  @@map("google_accounts")
+}
+
+// One row per Gmail message the app has looked at (label Briefs), so "Check inbox" never processes one twice.
+model InboundEmail {
+  id              String   @id @default(cuid())
+  gmailMessageId  String   @unique
+  gmailThreadId   String
+  fromName        String
+  fromEmail       String // lowercase
+  subject         String
+  body            String
+  attachmentNames Json // string[]
+  receivedAt      DateTime
+  status          String // brief | update | ignored | waiting_sender | not_client | failed
+  reason          String? // classifier's one-line reason, or why the app decided without it
+  briefId         String?
+  agentRunId      String?
+  traceId         String?
+  classifierWrong Boolean  @default(false) // recruiter clicked "This is a brief"
+  createdAt       DateTime @default(now())
+
+  @@map("inbound_emails")
+}
+
+// ---------- observability ----------
+
+model AgentRun {
+  id           String   @id @default(cuid())
+  agent        String // e.g. "job-spec-agent"
+  model        String
+  isEval       Boolean  @default(false) // run made by `npm run eval` (tag "eval"); hidden on the Runs page by default filter
+  promptVersion String? // short hash of the system prompt (src/agents/run-agent.ts promptVersion); null for runs before Phase 4
+  status       String // "succeeded" | "failed" | "stopped_over_budget"
+  jobId        String? // filled once jobs exist (Phase 1+)
+  inputTokens  Int      @default(0)
+  outputTokens Int      @default(0)
+  costUsd      Float    @default(0)
+  budgetUsd    Float
+  numTurns     Int      @default(0)
+  overBudget   Boolean  @default(false)
+  traceId      String?
+  traceUrl     String?
+  error        String?
+  createdAt    DateTime @default(now())
+
+  @@map("agent_runs")
+}
+
+// Keys and settings typed in the app's Keys menu (bring your own key). Stays in the local database, never in git.
+// A row here wins over the same name in .env.local; deleting the row falls back to .env.local.
+model Setting {
+  key       String   @id // an environment variable name, e.g. ANTHROPIC_API_KEY
+  value     String
+  updatedAt DateTime @updatedAt
+
+  @@map("settings")
+}

@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* The app's palette (2026-10-10): use these names (bg-brand, text-olive, ...) instead of hex codes, so every page
+   shares the same colours. Warnings / problems / statuses use Tailwind's amber, rose, green, blue. */
+@theme {
+  --color-ink: #1a1a1a;          /* main text */
+  --color-page: #f4f4ef;         /* cream page background */
+  --color-rail: #1f1f1f;         /* dark left rail, dark tiles */
+  --color-brand: #e2f56c;        /* lime: main buttons, counts, scores, highlights */
+  --color-brand-hover: #d6f23c;  /* hover: a stronger, more vivid lime */
+  --color-tint: #eef3cf;         /* pale lime: soft buttons, selected rows */
+  --color-soft: #e6edd3;         /* pale olive: chips, tags, avatars, notes */
+  --color-soft-hover: #dce4c2;
+  --color-olive: #5f6b34;        /* links and text on soft chips */
+  --color-olive-mid: #7c8a4e;    /* bullets, progress bars */
+  --color-olive-line: #c9d98a;   /* note side-bars, selected borders */
+  --color-field: #fafaf6;        /* input boxes, small panels inside cards */
+  --color-panel: #f8f8f4;        /* inset areas, table headers */
+}
+
+/* The whole app at 80% (2026-10-09): at 100% browser zoom it was too big, so the base text size is 80% and every
+   size measured in rem (Tailwind's text, spacing, icons) shrinks with it. Printouts stay at full size. */
+html { font-size: 80%; }
+@media print {
+  html { font-size: 100%; }
+}
+
+/* Logo (app/logo.tsx): the loop spins once when you hover the logo. */
+@keyframes hl-spin {
+  to { transform: rotate(360deg); }
+}
+.hl-loop { transform-box: view-box; transform-origin: 60px 60px; }
+a:hover .hl-loop { animation: hl-spin 0.9s cubic-bezier(0.2, 0.8, 0.2, 1); }
+@media (prefers-reduced-motion: reduce) {
+  a:hover .hl-loop { animation: none; }
+}
+
+/* Email side panel on Briefs (app/brief-row.tsx): slides in from the right over a dimmed page. */
+@keyframes hl-panel-in {
+  from { transform: translateX(100%); }
+}
+@keyframes hl-fade-in {
+  from { opacity: 0; }
+}
+.hl-panel { animation: hl-panel-in 0.25s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.hl-dim { animation: hl-fade-in 0.2s ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  .hl-panel, .hl-dim { animation: none; }
+}
+
