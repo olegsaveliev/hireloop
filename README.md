@@ -25,7 +25,7 @@ step, the safety net around every AI run, and the tech stack.
 You need **Node.js 20 or newer** ([nodejs.org](https://nodejs.org)) and **git**.
 
 ```bash
-git clone https://github.com/<your-account>/hireloop.git
+git clone https://github.com/olegsaveliev/hireloop.git
 cd hireloop
 cp .env.example .env.local   # local settings; keys can also be added in the app later
 npm install                  # also generates the database client
