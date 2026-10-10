@@ -54,7 +54,8 @@ A full job, from spec to interview, costs about **$0.35** in API usage.
 
 There are two ways to add keys. Use whichever you like:
 
-- **In the app:** the **Keys menu** (key icon, left rail). Keys are saved in your local database (`prisma/dev.db`,
+- **In the app:** the **Keys menu** (key icon, left rail) for Anthropic and Langfuse, and the **mail icon** for
+  Google (next to **Connect Gmail**). Keys are saved in your local database (`prisma/dev.db`,
   never committed) and checked with the service when you save (Anthropic and Langfuse). Only the last 4 characters are ever shown again.
 - **In `.env.local`:** see [.env.example](.env.example). A key saved in the app wins over the same key in `.env.local`.
 

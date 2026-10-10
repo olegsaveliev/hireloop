@@ -3,7 +3,7 @@
 Hireloop was built one phase at a time, each from its spec in [docs/specs](docs/specs).
 
 ## 2026-10-10: Open source release
-- **Keys menu (bring your own key):** add Anthropic, Langfuse and Google keys in the app (key icon, left rail). They're
+- **Keys menu (bring your own key):** add Anthropic and Langfuse keys in the app (key icon, left rail) and Google keys next to **Connect Gmail** (mail icon). They're
   saved in the local database and checked when you save; `.env.local` still works. A banner shows on first run.
 - **Langfuse is optional:** without keys, agents still run and are logged on the Runs page, just not traced.
 - **Test inbox:** demo candidates and clients use placeholder addresses that become your own test inbox when you seed.

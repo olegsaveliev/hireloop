@@ -7,10 +7,12 @@ Anyone who clones Hireloop from GitHub should be able to add their own keys in t
 Gmail, instead of editing a file. `.env.local` keeps working for people who prefer it.
 
 ## Trigger
-- **Key icon** in the left rail, above the mail icon. Click for the Keys panel; Esc or a click outside closes it.
+- **Key icon** in the left rail, above the mail icon: Anthropic and Langfuse. Esc or a click outside closes it.
+- **Mail icon:** the Google keys live here, next to **Connect Gmail** (changed 2026-10-10: Google setup and connection
+  belong together). Without a Google client the panel shows the Google fields open and **Connect Gmail** greyed out;
+  once the client ID and secret are set, they fold under **Google settings**.
 - First run: until there is an Anthropic key, every page shows an amber banner "Add your Anthropic API key to start"
   with **Add keys**, and the key icon has an amber dot.
-- Mail icon with no Google client yet: opens the Keys panel instead of a Google sign-in that can't work.
 
 ## Keys
 | Group | Keys | Needed |
@@ -52,5 +54,6 @@ Gmail, instead of editing a file. `.env.local` keeps working for people who pref
 - [x] A wrongly shaped key is refused with the expected prefix; a well-shaped fake key is saved with "Anthropic refused
       the key (HTTP 401)" and shown as "Saved in the app · •••• 0000".
 - [x] **Remove Anthropic keys** asks first, removes it, and the banner returns.
-- [x] With no Google client, the mail icon opens the Keys panel, which shows the redirect URI to paste.
+- [x] With no Google client, the mail icon's panel shows the Google fields and the redirect URI to paste, and
+      **Connect Gmail** is greyed out until the client ID and secret are saved.
 - [x] Type check and lint pass; no console or server errors.

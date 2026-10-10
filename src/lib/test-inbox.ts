@@ -1,5 +1,5 @@
 // Demo data (seed candidates, clients, "Try an example" briefs) uses placeholder addresses like
-// test.inbox+12@example.com. When you set a test inbox (Keys menu or GOOGLE_TEST_INBOX), they become
+// test.inbox+12@example.com. When you set a test inbox (mail icon's menu or GOOGLE_TEST_INBOX), they become
 // you+12@gmail.com, so emails the app sends to demo candidates and clients land in your own test inbox.
 export const PLACEHOLDER_INBOX = "test.inbox@example.com";
 

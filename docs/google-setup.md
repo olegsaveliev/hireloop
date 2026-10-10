@@ -45,7 +45,7 @@ Leave the app in **Testing**. You don't need to submit it for verification.
 
 ## 5. Add the keys in Hireloop
 
-1. In Hireloop, click the **key icon** in the left rail and go to **Google**.
+1. In Hireloop, click the **mail icon** in the left rail.
 2. Paste the **OAuth client ID** and **OAuth client secret**.
 3. Type your **Test inbox** address (for example `you.test@gmail.com`).
 4. Click **Save and check**.
@@ -59,7 +59,7 @@ You can put the same values in `.env.local` instead (`GOOGLE_CLIENT_ID`, `GOOGLE
 
 ## 6. Connect Gmail
 
-1. Click the **mail icon** in the left rail → **Connect Gmail**.
+1. In the same mail icon menu, click **Connect Gmail** (it turns green once the client ID and secret are saved).
 2. Sign in with the **recruiter** account.
 3. Google says *"Google hasn't verified this app"*. That's expected for your own test app: click **Continue**.
 4. **Tick every box** (read Gmail, send email, calendar events, free/busy) → **Continue**.

@@ -9,7 +9,7 @@ const ACCOUNT_ID = "default";
 
 function env(name: string): string {
   const v = process.env[name];
-  if (!v) throw new Error(`${name} is not set. Add your Google keys in the Keys menu (key icon, left rail).`);
+  if (!v) throw new Error(`${name} is not set. Add your Google keys in the mail icon's menu (left rail).`);
   return v;
 }
 

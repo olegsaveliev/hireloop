@@ -155,7 +155,7 @@ flowchart LR
 | Data | SQLite via Prisma 7 ORM (better-sqlite3 adapter), 24 tables, seed data (briefs, 60 candidates, replies) |
 | Connected services | Gmail API, Google Calendar API, google-auth-library (OAuth), mock_ats, mock_inbox |
 | Quality and cost | Langfuse Cloud EU, OpenTelemetry + OpenInference instrumentation, datasets + eval runner (33 items), "Hireloop agents" dashboard |
-| Keys | Bring your own key: Anthropic (required), Langfuse (optional), Google (from step 5), typed in the app's Keys menu and saved in the local database, or in `.env.local` |
+| Keys | Bring your own key: Anthropic (required), Langfuse (optional), Google (from step 5), typed in the app (Keys menu; Google in the mail icon's menu) and saved in the local database, or in `.env.local` |
 | Building and testing | tsx test scripts per phase, ESLint, git, Playwright + ffmpeg (demo video) |
 
 ## 5. Hosted later

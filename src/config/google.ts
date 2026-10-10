@@ -21,8 +21,8 @@ export const INBOUND_MAX_BODY_CHARS = 20_000;
 // The classifier only needs the start of an email to tell a brief from "thanks, talk tomorrow".
 export const CLASSIFIER_MAX_BODY_CHARS = 4_000;
 
-// Addresses the app may send email to (from Step 5 on): the test inbox plus the allow-list (both set in the Keys menu
-// or .env.local). Everything else is refused in code.
+// Addresses the app may send email to (from Step 5 on): the test inbox plus the allow-list (both set in the mail icon's
+// menu or .env.local). Everything else is refused in code.
 export const sendAllowlist = () =>
   [process.env.GOOGLE_TEST_INBOX ?? "", process.env.GOOGLE_SEND_ALLOWLIST ?? ""]
     .join(",")

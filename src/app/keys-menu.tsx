@@ -19,11 +19,14 @@ export type KeyField = {
   shown: string; // masked for secrets
 };
 
-// Other parts of the app (Connect Gmail without Google keys, the "add your key" banner) open this menu with this event.
+// The "add your key" banner opens this menu with this event.
 export const OPEN_KEYS_EVENT = "hireloop:open-keys";
 export const openKeysMenu = () => window.dispatchEvent(new Event(OPEN_KEYS_EVENT));
 
-const GROUPS: { group: KeyGroup; title: string; tag: string; about: string; where: { label: string; href: string } }[] = [
+type GroupInfo = { group: KeyGroup; title: string; tag: string; about: string; where: { label: string; href: string } };
+
+// The Keys menu shows Anthropic and Langfuse; Google lives in the mail icon's menu (GmailMenu), next to Connect Gmail.
+const GROUPS: GroupInfo[] = [
   {
     group: "anthropic",
     title: "Anthropic",
@@ -38,20 +41,21 @@ const GROUPS: { group: KeyGroup; title: string; tag: string; about: string; wher
     about: "A trace, cost and scores for every agent run (free tier is enough). Without it the agents still run.",
     where: { label: "cloud.langfuse.com → project → Settings → API keys", href: "https://cloud.langfuse.com" },
   },
-  {
-    group: "google",
-    title: "Google (Gmail + Calendar)",
-    tag: "From step 5",
-    about: "Needed to send outreach and read replies: approved emails go to your test inbox, briefs can arrive by email, interviews are booked in your calendar. Step-by-step guide: docs/google-setup.md.",
-    where: { label: "console.cloud.google.com → APIs & Services → Credentials", href: "https://console.cloud.google.com/apis/credentials" },
-  },
 ];
+
+export const GOOGLE_GROUP: GroupInfo = {
+  group: "google",
+  title: "Google OAuth client",
+  tag: "From step 5",
+  about: "Needed to send outreach and read replies: approved emails go to your test inbox, briefs can arrive by email, interviews are booked in your calendar. Step-by-step guide: docs/google-setup.md.",
+  where: { label: "console.cloud.google.com → APIs & Services → Credentials", href: "https://console.cloud.google.com/apis/credentials" },
+};
 
 const input = "w-full rounded-lg border border-stone-300 bg-white px-2.5 py-1.5 font-mono text-xs placeholder:text-stone-400 focus:border-ink focus:outline-none";
 
 // Left rail, bottom: bring your own key. Same pattern as the Gmail menu: an icon with a dot, click for the panel.
 // Dot: amber = no Anthropic key yet (agents can't run), green = everything set, none = optional parts missing.
-export function KeysMenu({ fields, redirectUri }: { fields: KeyField[]; redirectUri: string }) {
+export function KeysMenu({ fields }: { fields: KeyField[] }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -72,7 +76,7 @@ export function KeysMenu({ fields, redirectUri }: { fields: KeyField[]; redirect
   }, [open]);
 
   const anthropic = fields.find((f) => f.name === "ANTHROPIC_API_KEY")?.set;
-  const all = fields.filter((f) => f.name !== "GOOGLE_SEND_ALLOWLIST").every((f) => f.set);
+  const all = fields.every((f) => f.set);
   const dot = !anthropic ? "bg-amber-500" : all ? "bg-green-400" : null;
   const label = !anthropic ? "Keys · add your Anthropic key" : "Keys";
 
@@ -92,7 +96,7 @@ export function KeysMenu({ fields, redirectUri }: { fields: KeyField[]; redirect
             </p>
           </div>
           {GROUPS.map((g) => (
-            <KeyGroupForm key={g.group} {...g} fields={fields.filter((f) => f.group === g.group)} redirectUri={g.group === "google" ? redirectUri : undefined} />
+            <KeyGroupForm key={g.group} {...g} fields={fields.filter((f) => f.group === g.group)} />
           ))}
         </div>
       )}
@@ -100,7 +104,7 @@ export function KeysMenu({ fields, redirectUri }: { fields: KeyField[]; redirect
   );
 }
 
-function KeyGroupForm({
+export function KeyGroupForm({
   group,
   title,
   tag,
@@ -108,7 +112,7 @@ function KeyGroupForm({
   where,
   fields,
   redirectUri,
-}: (typeof GROUPS)[number] & { fields: KeyField[]; redirectUri?: string }) {
+}: GroupInfo & { fields: KeyField[]; redirectUri?: string }) {
   const [state, save, saving] = useActionState(saveKeysAction.bind(null, group), null);
   const savedInApp = fields.some((f) => f.source === "app");
   const ready = fields.filter((f) => f.name !== "GOOGLE_SEND_ALLOWLIST" && f.name !== "LANGFUSE_BASE_URL").every((f) => f.set);
